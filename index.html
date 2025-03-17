@@ -12,6 +12,7 @@
             padding: 20px;
             margin: 0;
             position: relative;
+            overflow: hidden;
         }
 
         h1 {
@@ -24,19 +25,32 @@
             max-width: 90%;
         }
 
-        /* Floating GIFs */
+        /* Floating GIFs (Slower, More Spread Apart) */
         .floating-gif {
             position: absolute;
             width: 80px;
-            animation: float 10s infinite linear;
+            animation: float-slow 15s infinite linear;
         }
 
-        @keyframes float {
-            0% { transform: translateY(100vh) translateX(10vw); opacity: 1; }
-            100% { transform: translateY(-100vh) translateX(-10vw); opacity: 0; }
+        @keyframes float-slow {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
         }
 
-        /* Popup Styling */
+        /* Floating Hearts (Fast, Different Colors, Random Speeds) */
+        .floating-heart {
+            position: absolute;
+            font-size: 30px;
+            animation: float-fast 1.5s infinite linear;
+            opacity: 0.8;
+        }
+
+        @keyframes float-fast {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        /* Popup Styling (Fixed Popups) */
         .popup {
             position: fixed;
             top: 50%;
@@ -54,7 +68,6 @@
             overflow-y: auto;
         }
 
-        /* Button Styling */
         .popup button {
             padding: 10px 15px;
             background-color: #ff4d4d;
@@ -67,17 +80,6 @@
             width: 100%;
         }
 
-        .popup button:hover {
-            background-color: #ff6666;
-        }
-
-        /* Scrollable text inside the popup */
-        .popup-content {
-            max-height: 50vh;
-            overflow-y: auto;
-            text-align: left;
-            padding-right: 10px;
-        }
     </style>
 </head>
 <body onload="startAnimations()">
@@ -85,13 +87,31 @@
     <h1>For My Girlfriend - I Love You Today But More Than Tomorrow</h1>
 
     <!-- Floating GIFs -->
-    <img class="floating-gif" src="https://media.tenor.com/amZ5wxLGUEoAAAAi/hugging-heart-snoopy.gif" style="left:10%;">
-    <img class="floating-gif" src="https://media1.tenor.com/m/Lo-R0w7SIOoAAAAC/hugs.gif" style="left:30%;">
-    <img class="floating-gif" src="https://media.tenor.com/Jloq3y4mk8kAAAAi/amor-love.gif" style="left:50%;">
-    <img class="floating-gif" src="https://media.tenor.com/PQGGoLePq94AAAAi/im-so-tired-stuart.gif" style="left:70%;">
-    <img class="floating-gif" src="https://media.tenor.com/X1RNJE46wwsAAAAi/help-me-kevin.gif" style="left:90%;">
+    <img class="floating-gif" src="https://media.tenor.com/amZ5wxLGUEoAAAAi/hugging-heart-snoopy.gif" style="left:5%;">
+    <img class="floating-gif" src="https://media1.tenor.com/m/Lo-R0w7SIOoAAAAC/hugs.gif" style="left:25%;">
+    <img class="floating-gif" src="https://media.tenor.com/Jloq3y4mk8kAAAAi/amor-love.gif" style="left:45%;">
+    <img class="floating-gif" src="https://media.tenor.com/PQGGoLePq94AAAAi/im-so-tired-stuart.gif" style="left:65%;">
+    <img class="floating-gif" src="https://media.tenor.com/X1RNJE46wwsAAAAi/help-me-kevin.gif" style="left:85%;">
 
-    <!-- Popup 1: Days Count -->
+    <!-- Floating Hearts -->
+    <script>
+        function createHearts() {
+            const colors = ["red", "pink", "purple", "#ff66b2", "#ff9999"];
+            for (let i = 0; i < 30; i++) {
+                let heart = document.createElement("div");
+                heart.innerHTML = "❤️";
+                heart.className = "floating-heart";
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.fontSize = Math.random() * 20 + 10 + "px";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = Math.random() * 2 + 1 + "s";
+                document.body.appendChild(heart);
+            }
+        }
+        createHearts();
+    </script>
+
+    <!-- Popups -->
     <div id="days-popup" class="popup">
         <h2>Time We've Spent Together</h2>
         <p>From <strong>November 13, 2024</strong> to <strong>March 17, 2025</strong>, we've shared:</p>
@@ -99,7 +119,6 @@
         <button onclick="showWhoAreYou()">Next</button>
     </div>
 
-    <!-- Popup 2: Who are you? -->
     <div id="who-are-you-popup" class="popup">
         <h2>Who are you?</h2>
         <button onclick="showLetter()">Aya, my girlfriend</button>
@@ -107,7 +126,6 @@
         <button onclick="alert('she is pangit nga')">Ali panget (DON’T PRESS!!)</button>
     </div>
 
-    <!-- Popup 3: Letter -->
     <div id="letter-popup" class="popup">
         <h2>I Love You</h2>
         <div class="popup-content">
@@ -118,13 +136,12 @@
         </div>
     </div>
 
-    <!-- JavaScript -->
+    <!-- JavaScript for Popups -->
     <script>
         function startAnimations() {
             showDaysCount();
         }
 
-        // Days Count Animation (FASTER)
         function showDaysCount() {
             const startDate = new Date("2024-11-13");
             const endDate = new Date("2025-03-17");
@@ -135,7 +152,7 @@
                 document.getElementById("days-count").innerText = currentDay + " days";
                 if (currentDay >= totalDays) clearInterval(counter);
                 currentDay++;
-            }, 50); // Faster count-up
+            }, 50);
 
             setTimeout(() => { document.getElementById("days-popup").style.display = "block"; }, 500);
         }
