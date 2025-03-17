@@ -10,24 +10,24 @@
             background-color: pink;
             text-align: center;
             padding: 20px;
-            overflow: hidden;
             margin: 0;
             position: relative;
         }
 
         h1 {
-            font-size: 24px;
+            font-size: 20px;
             color: white;
             background-color: red;
             padding: 10px;
             border-radius: 10px;
             display: inline-block;
+            max-width: 90%;
         }
 
         /* Floating GIFs */
         .floating-gif {
             position: absolute;
-            width: 100px;
+            width: 80px;
             animation: float 10s infinite linear;
         }
 
@@ -43,35 +43,40 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background-color: white;
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             display: none;
             z-index: 100;
-            opacity: 0;
-            animation: fadeInPopup 0.5s forwards;
-        }
-
-        @keyframes fadeInPopup {
-            0% { opacity: 0; transform: translate(-50%, -60%); }
-            100% { opacity: 1; transform: translate(-50%, -50%); }
+            width: 90%;
+            max-width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
         }
 
         /* Button Styling */
         .popup button {
-            padding: 10px 20px;
+            padding: 10px 15px;
             background-color: #ff4d4d;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px;
             margin-top: 10px;
-            transition: background-color 0.3s ease;
+            width: 100%;
         }
 
         .popup button:hover {
             background-color: #ff6666;
+        }
+
+        /* Scrollable text inside the popup */
+        .popup-content {
+            max-height: 50vh;
+            overflow-y: auto;
+            text-align: left;
+            padding-right: 10px;
         }
     </style>
 </head>
@@ -105,10 +110,12 @@
     <!-- Popup 3: Letter -->
     <div id="letter-popup" class="popup">
         <h2>I Love You</h2>
-        <p>I don’t like making you cry, and I hate knowing that I was the reason for it. I’m really sorry, baby. I never wanted to hurt you, but I know that doesn’t change the fact that I did. I feel bad, and I promise to do better next time po.</p>
-        <p>I hope you accept this as my apology, baby. I love you so much, and I never want to be the reason for your sadness. You mean so much to me, and I want to take good care of you.</p>
-        <p>What happened yesterday won’t happen again, and I’ll make sure of that. I don’t want to be the reason you cry again. I don’t like it, and I really don’t want that to ever happen anymore. I’ll do whatever it takes to make sure I never do that again.</p>
-        <p>You are the person I love the most, and knowing that I made you feel that way kahapon makes me feel bad. If I could take it all back, I would. I just want to make things right, to be the person who’ll make you happy and not cry. I love you.</p>
+        <div class="popup-content">
+            <p>I don’t like making you cry, and I hate knowing that I was the reason for it. I’m really sorry, baby. I never wanted to hurt you, but I know that doesn’t change the fact that I did. I feel bad, and I promise to do better next time po.</p>
+            <p>I hope you accept this as my apology, baby. I love you so much, and I never want to be the reason for your sadness. You mean so much to me, and I want to take good care of you.</p>
+            <p>What happened yesterday won’t happen again, and I’ll make sure of that. I don’t want to be the reason you cry again. I don’t like it, and I really don’t want that to ever happen anymore. I’ll do whatever it takes to make sure I never do that again.</p>
+            <p>You are the person I love the most, and knowing that I made you feel that way kahapon makes me feel bad. If I could take it all back, I would. I just want to make things right, to be the person who’ll make you happy and not cry. I love you.</p>
+        </div>
     </div>
 
     <!-- JavaScript -->
