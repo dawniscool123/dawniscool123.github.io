@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Girlfriend</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: pink;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+            margin: 0;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: white;
+            background-color: red;
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        /* Floating GIFs */
+        .floating-gif {
+            position: absolute;
+            width: 100px;
+            animation: float 10s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(10vw); opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(-10vw); opacity: 0; }
+        }
+
+        /* Popup Styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 100;
+            opacity: 0;
+            animation: fadeInPopup 0.5s forwards;
+        }
+
+        @keyframes fadeInPopup {
+            0% { opacity: 0; transform: translate(-50%, -60%); }
+            100% { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        /* Button Styling */
+        .popup button {
+            padding: 10px 20px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup button:hover {
+            background-color: #ff6666;
+        }
+    </style>
+</head>
+<body onload="startAnimations()">
+    
+    <h1>For My Girlfriend - I Love You Today But More Than Tomorrow</h1>
+
+    <!-- Floating GIFs -->
+    <img class="floating-gif" src="https://media.tenor.com/amZ5wxLGUEoAAAAi/hugging-heart-snoopy.gif" style="left:10%;">
+    <img class="floating-gif" src="https://media1.tenor.com/m/Lo-R0w7SIOoAAAAC/hugs.gif" style="left:30%;">
+    <img class="floating-gif" src="https://media.tenor.com/Jloq3y4mk8kAAAAi/amor-love.gif" style="left:50%;">
+    <img class="floating-gif" src="https://media.tenor.com/PQGGoLePq94AAAAi/im-so-tired-stuart.gif" style="left:70%;">
+    <img class="floating-gif" src="https://media.tenor.com/X1RNJE46wwsAAAAi/help-me-kevin.gif" style="left:90%;">
+
+    <!-- Popup 1: Days Count -->
+    <div id="days-popup" class="popup">
+        <h2>Time We've Spent Together</h2>
+        <p>From <strong>November 13, 2024</strong> to <strong>March 17, 2025</strong>, we've shared:</p>
+        <p id="days-count"></p>
+        <button onclick="showWhoAreYou()">Next</button>
+    </div>
+
+    <!-- Popup 2: Who are you? -->
+    <div id="who-are-you-popup" class="popup">
+        <h2>Who are you?</h2>
+        <button onclick="showLetter()">Aya, my girlfriend</button>
+        <button onclick="alert('i said dont press diba')">Sage panget (DON’T PRESS!!)</button>
+        <button onclick="alert('she is pangit nga')">Ali panget (DON’T PRESS!!)</button>
+    </div>
+
+    <!-- Popup 3: Letter -->
+    <div id="letter-popup" class="popup">
+        <h2>I Love You</h2>
+        <p>I don’t like making you cry, and I hate knowing that I was the reason for it. I’m really sorry, baby. I never wanted to hurt you, but I know that doesn’t change the fact that I did. I feel bad, and I promise to do better next time po.</p>
+        <p>I hope you accept this as my apology, baby. I love you so much, and I never want to be the reason for your sadness. You mean so much to me, and I want to take good care of you.</p>
+        <p>What happened yesterday won’t happen again, and I’ll make sure of that. I don’t want to be the reason you cry again. I don’t like it, and I really don’t want that to ever happen anymore. I’ll do whatever it takes to make sure I never do that again.</p>
+        <p>You are the person I love the most, and knowing that I made you feel that way kahapon makes me feel bad. If I could take it all back, I would. I just want to make things right, to be the person who’ll make you happy and not cry. I love you.</p>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function startAnimations() {
+            showDaysCount();
+        }
+
+        // Days Count Animation (FASTER)
+        function showDaysCount() {
+            const startDate = new Date("2024-11-13");
+            const endDate = new Date("2025-03-17");
+            const totalDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+
+            let currentDay = 1;
+            const counter = setInterval(() => {
+                document.getElementById("days-count").innerText = currentDay + " days";
+                if (currentDay >= totalDays) clearInterval(counter);
+                currentDay++;
+            }, 50); // Faster count-up
+
+            setTimeout(() => { document.getElementById("days-popup").style.display = "block"; }, 500);
+        }
+
+        function showWhoAreYou() {
+            document.getElementById("days-popup").style.display = "none";
+            document.getElementById("who-are-you-popup").style.display = "block";
+        }
+
+        function showLetter() {
+            document.getElementById("who-are-you-popup").style.display = "none";
+            document.getElementById("letter-popup").style.display = "block";
+        }
+    </script>
+</body>
+</html>
